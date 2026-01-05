@@ -84,14 +84,12 @@ export const GeneratePanel: React.FC<GeneratePanelProps> = ({
                         aria-label="Slang generation seed concept"
                     />
                 </div>
-                
                 <div className="mt-4 text-sm p-4 rounded-lg bg-brand-crt-bg text-brand-crt-text/90 font-mono leading-relaxed border-2 border-brand-metal-dark shadow-metal-inset">
-                    <p className="font-bold text-brand-text mb-2">++PRO-TIPS++</p>
-                    <p>> The weirder the concept, the better the slang.</p>
-                    <p className="mt-2">> Try combining two unrelated things, like "a sad lamp" or "spicy software".</p>
-                    <p className="mt-2">> My synthesizer runs on pure imagination (and electricity).</p>
+                     <p className="font-bold text-brand-text mb-2">++PRO-TIPS++</p>
+                     <p>&gt; The weirder the concept, the better the slang.</p>
+                     <p className="mt-2">&gt; Try combining two unrelated things, like "a sad lamp" or "spicy software".</p>
+                     <p className="mt-2">&gt; My synthesizer runs on pure imagination (and electricity).</p>
                 </div>
-
                 <div className="mt-6">
                      <button
                         onClick={onGenerate}
