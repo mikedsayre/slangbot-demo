@@ -94,7 +94,7 @@ async function callGemini(prompt: string, systemInstruction: string, jsonMode: b
 
     // Initialize the specific model
     const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
+        model: "gemini-2.5-flash",
         systemInstruction: systemInstruction, // System prompt goes here in the new SDK
         generationConfig: {
             responseMimeType: jsonMode ? "application/json" : "text/plain",
