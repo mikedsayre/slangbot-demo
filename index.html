@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slangbot - The Dictionary of Now. The Laboratory of Next.</title>
+    <meta name="description" content="Slangbot is your AI guide to the slang of now and the laboratory for the slang of next. Understand any term, or create your own.">
+    
+    <!-- Social Media / Open Graph -->
+    <meta property="og:title" content="Slangbot - The Dictionary of Now. The Laboratory of Next.">
+    <meta property="og:description" content="Slangbot is your AI guide to the slang of now and the laboratory for the slang of next. Understand any term, or create your own.">
+    <!-- TODO: Replace this placeholder image with your own 1200x630 image -->
+    <meta property="og:image" content="https://i.imgur.com/gANmB4j.png">
+    <meta property="og:url" content="https://slangbot.app">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Slangbot - The Dictionary of Now. The Laboratory of Next.">
+    <meta name="twitter:description" content="Slangbot is your AI guide to the slang of now and the laboratory for the slang of next. Understand any term, or create your own.">
+    <!-- TODO: Replace this placeholder image with your own 1200x630 image -->
+    <meta name="twitter:image" content="https://i.imgur.com/gANmB4j.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://slangbot.app" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <style>
+      :root {
+        /* 1950s Retro Theme */
+        --font-display: 'Orbitron', sans-serif;
+        --font-sans: 'Inter', sans-serif;
+        --font-mono: 'Fira Code', monospace;
+
+        --color-bg: #0a0a0a;
+        --color-surface: #4f5d58;
+        --color-surface-alt: #3c4a44;
+        --color-panel: #e0d8c0;
+        --color-panel-text: #3d3522;
+        --color-primary: #ff5722;
+        --color-primary-glow: rgba(255, 87, 34, 0.4);
+        --color-secondary: #00bcd4;
+        --color-text: #f5f1e7;
+        --color-subtle: #a8b1ac;
+        --color-border: #1a1a1a;
+        --color-metal: #b0b0b0;
+        --color-metal-dark: #7a7a7a;
+        --color-metal-shadow: #222;
+        --color-crt-bg: #1a1a1a;
+        --color-crt-text: #2eff73;
+        --color-crt-glow: rgba(46, 255, 115, 0.2);
+        
+        --dial-size: 100px;
+        --dial-knob-size: 40px; /* Slightly larger knob */
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background-color: #0c141c; /* Dark blueprint blue */
+        background-image: 
+          repeating-linear-gradient(rgba(100, 150, 255, 0.1) 0 1px, transparent 1px 100%),
+          repeating-linear-gradient(90deg, rgba(100, 150, 255, 0.1) 0 1px, transparent 1px 100%);
+        background-size: 50px 50px;
+      }
+      .font-display { font-family: var(--font-display); }
+
+      /* Mobile Shrink Ray */
+      @media (max-width: 767px) {
+        html {
+          font-size: 85%;
+        }
+      }
+
+      /* CRT Screen Effect */
+      .crt-screen {
+        background-color: var(--color-crt-bg);
+        color: var(--color-crt-text);
+        text-shadow: 0 0 5px var(--color-crt-glow);
+        border-radius: 20px;
+        border: 3px solid var(--color-metal);
+        padding: 1rem;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.7), 0 0 5px var(--color-metal-shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .crt-screen::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 2;
+        background-size: 100% 3px, 3px 100%;
+        pointer-events: none;
+        animation: slow-pulse 1.5s infinite ease-in-out;
+      }
+      .crt-screen.glitching::before {
+        animation: fast-flicker 0.15s infinite;
+      }
+
+      @keyframes slow-pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+      }
+      @keyframes fast-flicker {
+        0% { opacity: 0.2; }
+        20% { opacity: 1; }
+        100% { opacity: 0.2; }
+      }
+      @keyframes stat-flicker {
+        0% { text-shadow: 0 0 3px var(--color-crt-glow); opacity: 0.8; }
+        50% { text-shadow: 0 0 8px var(--color-crt-glow), 0 0 12px var(--color-crt-text); opacity: 1; }
+        100% { text-shadow: 0 0 3px var(--color-crt-glow); opacity: 0.8; }
+      }
+
+
+      /* Retro Dial Component */
+      .dial-container {
+        position: relative;
+        width: var(--dial-size);
+        height: var(--dial-size);
+        touch-action: none; /* Prevents scrolling on mobile */
+      }
+      .dial-base {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(145deg, #e0e0e0, #a0a0a0);
+        border-radius: 50%;
+        border: 4px solid var(--color-metal-dark);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .dial-knob-rotator {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .dial-knob {
+        width: var(--dial-knob-size);
+        height: var(--dial-knob-size);
+        background: linear-gradient(145deg, #444, #222);
+        border-radius: 50%;
+        border: 2px solid #555;
+        position: absolute;
+        top: calc(50% - var(--dial-knob-size) / 2);
+        left: calc(50% - var(--dial-knob-size) / 2);
+        cursor: grab;
+        transform-origin: center center;
+      }
+      .dial-knob:active {
+        cursor: grabbing;
+      }
+      .dial-knob::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6px;
+        height: 14px;
+        background: var(--color-primary);
+        border: 1px solid rgba(0,0,0,0.5);
+      }
+      .dial-ticks {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .dial-tick {
+        position: absolute;
+        width: 2px;
+        height: 6px;
+        background: var(--color-panel-text);
+        left: calc(50% - 1px);
+        top: 0;
+        transform-origin: 50% calc(var(--dial-size) / 2);
+      }
+      .dial-tick.max-tick {
+        background-color: #ff3b30;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+    </style>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+              display: ['Orbitron', 'sans-serif'],
+            },
+            colors: {
+              'brand-bg': 'var(--color-bg)',
+              'brand-surface': 'var(--color-surface)',
+              'brand-surface-alt': 'var(--color-surface-alt)',
+              'brand-panel': 'var(--color-panel)',
+              'brand-panel-text': 'var(--color-panel-text)',
+              'brand-primary': 'var(--color-primary)',
+              'brand-secondary': 'var(--color-secondary)',
+              'brand-text': 'var(--color-text)',
+              'brand-subtle': 'var(--color-subtle)',
+              'brand-border': 'var(--color-border)',
+              'brand-metal': 'var(--color-metal)',
+              'brand-metal-dark': 'var(--color-metal-dark)',
+              'brand-crt-bg': 'var(--color-crt-bg)',
+              'brand-crt-text': 'var(--color-crt-text)',
+            },
+            animation: {
+                'gradient-x': 'gradient-x 5s ease infinite',
+                'fade-in-down': 'fade-in-down 0.3s ease-out forwards',
+                'fade-in': 'fade-in 0.3s ease-out forwards',
+                'scale-up': 'scale-up 0.2s ease-out forwards',
+                'flicker-glow': 'flicker-glow 1.5s ease-in-out infinite',
+                'float': 'float 4s ease-in-out infinite',
+                'slide-in-from-right': 'slide-in-from-right 0.3s ease-out forwards',
+                'shimmer': 'shimmer 2s infinite linear',
+                'pulse-glow': 'pulse-glow 1.5s infinite ease-in-out',
+                'shake': 'shake 0.4s ease-in-out',
+                'fast-flicker': 'fast-flicker 0.2s 3',
+                'stat-flicker': 'stat-flicker 0.5s ease-in-out 1',
+                'blueprint-scroll': 'blueprint-scroll 2s linear infinite',
+                'circuit-pulse': 'circuit-pulse 3s ease-in-out infinite',
+                'scanline': 'scanline 8s linear infinite',
+                'glitch-in': 'glitch-in 0.5s ease-out forwards',
+            },
+            keyframes: {
+                'gradient-x': {
+                    '0%, 100%': {
+                        'background-size':'200% 200%',
+                        'background-position': 'left center'
+                    },
+                    '50%': {
+                        'background-size':'200% 200%',
+                        'background-position': 'right center'
+                    }
+                },
+                'fade-in-down': {
+                    '0%': {
+                        opacity: '0',
+                        transform: 'translateY(-10px)'
+                    },
+                    '100%': {
+                        opacity: '1',
+                        transform: 'translateY(0)'
+                    },
+                },
+                'fade-in': {
+                    'from': { opacity: '0' },
+                    'to': { opacity: '1' },
+                },
+                'scale-up': {
+                  'from': { opacity: '0.9', transform: 'scale(0.95)' },
+                  'to': { opacity: '1', transform: 'scale(1)' },
+                },
+                'flicker-glow': {
+                    '0%, 100%': {
+                        filter: 'drop-shadow(0 0 2px var(--color-primary-glow))',
+                        transform: 'scale(1)'
+                    },
+                    '50%': {
+                        filter: 'drop-shadow(0 0 10px var(--color-primary-glow))',
+                        transform: 'scale(1.05)'
+                    }
+                },
+                'float': {
+                    '0%, 100%': { transform: 'translateY(0px)' },
+                    '50%': { transform: 'translateY(-10px)' }
+                },
+                'slide-in-from-right': {
+                    'from': { transform: 'translateX(100%)' },
+                    'to': { transform: 'translateX(0)' }
+                },
+                 'shimmer': {
+                    'from': { backgroundPosition: '-200% 0' },
+                    'to': { backgroundPosition: '200% 0' },
+                },
+                'pulse-glow': {
+                    '0%, 100%': {
+                        boxShadow: '0 0 8px var(--color-secondary), 0 0 12px var(--color-secondary), inset 0 0 4px var(--color-secondary)'
+                    },
+                    '50%': {
+                        boxShadow: '0 0 16px var(--color-secondary), 0 0 24px var(--color-secondary), inset 0 0 8px var(--color-secondary)'
+                    }
+                },
+                'shake': {
+                    '0%, 100%': { transform: 'translateX(0)' },
+                    '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-2px)' },
+                    '20%, 40%, 60%, 80%': { transform: 'translateX(2px)' },
+                },
+                'fast-flicker': {
+                    '0%': { opacity: '1' },
+                    '50%': { opacity: '0.3' },
+                    '100%': { opacity: '1' },
+                },
+                'stat-flicker': {
+                  '0%': { textShadow: '0 0 3px var(--color-crt-glow)', opacity: '0.8' },
+                  '50%': { textShadow: '0 0 8px var(--color-crt-glow), 0 0 12px var(--color-crt-text)', opacity: '1' },
+                  '100%': { textShadow: '0 0 3px var(--color-crt-glow)', opacity: '0.8' },
+                },
+                'blueprint-scroll': {
+                    'from': { backgroundPosition: '0 0' },
+                    'to': { backgroundPosition: '-50px 0' },
+                },
+                'circuit-pulse': {
+                    '0%, 100%': { 'background-color': 'var(--color-crt-bg)' },
+                    '50%': { 'background-color': 'rgba(46, 255, 115, 0.08)' },
+                },
+                'glitch-in': {
+                    '0%': { opacity: '0', transform: 'translateY(15px) skewX(-15deg)', filter: 'blur(3px)' },
+                    '20%': { opacity: '1', transform: 'translateY(0) skewX(0)', filter: 'blur(0)' },
+                    '25%': { opacity: '0.6', transform: 'translateX(-10px)' },
+                    '30%': { opacity: '1', transform: 'translateX(0)' },
+                    '60%': { opacity: '1', transform: 'scale(1.02, 1)' },
+                    '100%': { opacity: '1', transform: 'scale(1, 1)' },
+                },
+            },
+            boxShadow: {
+              'glow-primary': '0 0 15px var(--color-primary-glow)',
+              'glow-green': '0 0 15px var(--color-crt-glow)',
+              'metal': 'inset 0 1px 1px rgba(255,255,255,0.5), 0 2px 3px rgba(0,0,0,0.5)',
+              'metal-inset': 'inset 0 2px 4px rgba(0,0,0,0.6)',
+            }
+          }
+        }
+      }
+    </script>
+    <script type="module" src="/index.tsx"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^4.3.1",
+    "@google/genai": "https://esm.sh/@google/genai@^0.15.0"
+  }
+}
+</script>
+</head>
+  <body class="text-brand-text transition-colors duration-300">
+    <div id="root"></div>
+  </body>
+</html>
